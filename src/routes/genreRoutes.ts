@@ -1,7 +1,7 @@
-import express, { Request, Response } from 'express';
-import { validateGenre, } from '../middleware/validation';
+import express, { Request, Response, response } from 'express';
+import { validateGenre, validateGenreAdd } from '../middleware/validation';
 import { Movie } from '../models/genre';
-import { getMoviesFromGenre } from '../controllers/genreController';
+import { getMoviesFromGenre, getAllGenres, addMoviesbyGenre } from '../controllers/genreController';
 import { MoviesError } from '../utils/error';
 
 const router = express.Router();
@@ -30,17 +30,30 @@ router.get(`/:genre`, validateGenre, async (req: Request, res: Response) => {
 });
 
 
+router.post(`/:genre/add`, validateGenreAdd, async (req: Request, res : Response) => {
+    try{
+        const genreKey = req.params.genre?.toLocaleLowerCase();
 
+        const movies = req.body.movies as Movie[];
 
-// router.post(`/add`, validateGenreAdd, (req: Request, res : Response) => {
+        const response = await addMoviesbyGenre(genreKey, movies)
+    
+        if (response.success){
+            res.send(response.message);
+        }else{
+            res.status(404).send(response.message);
+        }
 
-//     const newGenreKey = req.body.genre?.toLocaleLowerCase();
-  
-//     movieGenreList[newGenreKey] = [];
+    }catch (error){
 
-//     res.send(movieGenreList);
+        if(error instanceof MoviesError){
+            res.status(500).send(error.message);
+        }else{
+            res.status(500).send('An error occured !')
+        }
 
-// });
+    }
+});
 
 
 export default router;

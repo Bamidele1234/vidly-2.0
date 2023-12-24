@@ -1,6 +1,5 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
-
 export interface Movie {
     name: string;
     year: number;

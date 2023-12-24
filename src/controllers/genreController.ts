@@ -1,3 +1,4 @@
+import { movieResponse } from '../models/movieResponse';
 import GenreModel, { Movie } from '../models/genre';
 import { MoviesError } from '../utils/error';
 
@@ -19,5 +20,54 @@ export const getMoviesFromGenre = async (genre: string): Promise<Movie[] | null>
     } catch (err) {
         console.error('Error fetching movies:', err);
         throw new MoviesError('Error fetching movies'); 
+    }
+};
+
+export const getAllGenres = async (): Promise<string[] | null> => {
+    try {
+        
+        return await GenreModel.distinct('genre');
+
+    }catch(err){
+        console.error('Error fetching genres:', err);
+        return null;
+    }
+}
+
+export const addMoviesbyGenre = async (genreKey: string, movies: Movie[]): Promise<movieResponse> => {
+    try {
+        const genres = await getAllGenres();
+
+        if (genres?.includes(genreKey)) {
+            // Genre exists, check if movies already exist for this genre
+            const existingMovies = await GenreModel.findOne({ genre: genreKey, 'movies.name': { $in: movies.map(movie => movie.name) } });
+
+            if (!existingMovies) {
+                // Movies don't exist, add them to the database
+                await GenreModel.updateOne({ genre: genreKey }, { $push: { movies: { $each: movies } } });
+
+                return { 
+                    success: true, 
+                    message: 'Movies added successfully' 
+                };
+
+            } else {
+                // Movies already exist, handle accordingly
+                return { 
+                    success: false, 
+                    message: 'Movies already exist for this genre' 
+                };
+            }
+        } else {
+            // Genre does not exist, handle accordingly
+            return { 
+                success: false, 
+                message: 'Genre does not exist'
+            };
+        }
+    } catch (error) {
+        console.error('Error adding movies by genre:', error);
+
+        throw new MoviesError('Error adding movies by genre: '); 
     }
 };
