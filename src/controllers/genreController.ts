@@ -34,6 +34,74 @@ export const getAllGenres = async (): Promise<string[] | null> => {
     }
 }
 
+export const deleteGenre = async (genreKey: string) :  Promise<movieResponse> => {
+    try{
+        const genres = await getAllGenres();
+
+        if(genres?.includes(genreKey)){
+            const result = await GenreModel.deleteOne({ genre: genreKey });
+
+            if (result.deletedCount === 0) {
+                // No document was deleted, genre not found
+                return {
+                    success : false,
+                    message : 'Document not found',
+                }
+            } else {
+                return {
+                    success : true,
+                    message : 'Genre deleted successfully',
+                }
+            }
+                        
+        } else {
+            // Genre does not exist
+            return {
+                success: false,
+                message: 'Genre does not exist',
+            }
+        }
+    }catch(err){
+        console.error('Error deleting genre: ', err);
+
+        throw new MoviesError('Error deleting genre: '); 
+    }
+}
+
+export const addNewGenre = async (genreKey: string, movies: Movie[]) : Promise<movieResponse> => {
+    try {
+        const genres = await getAllGenres();
+        
+        if (!genres?.includes(genreKey)) {
+
+            // Genre does not exist, 
+            const genre = new GenreModel({
+                genre : genreKey,
+                movies: movies,
+            });
+
+            // Save it to mongodb
+            const result = await genre.save();
+
+            return {
+                success : true,
+                message: 'Genre saved successfully',
+            };
+           
+        } else {
+            // Genre already exists, handle accordingly
+            return { 
+                success: false, 
+                message: 'Genre already exists',
+            };
+        }
+    } catch (error) {
+        console.error('Error adding movies by genre:', error);
+
+        throw new MoviesError('Error adding movies by genre: '); 
+    }
+}
+
 export const addMoviesbyGenre = async (genreKey: string, movies: Movie[]): Promise<movieResponse> => {
     try {
         const genres = await getAllGenres();
