@@ -39,10 +39,10 @@ router.post(`/add`, validateNewGenre, async (req: Request, res : Response) => {
 
     const response = await addNewGenre(genreKey, movies);
 
-    if (response.success){
+    if (response?.success){
         res.send(response.message);
     }else{
-        res.status(404).send(response.message);
+        res.status(404).send(response?.message);
     }
 });
 

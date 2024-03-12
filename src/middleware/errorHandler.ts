@@ -1,12 +1,11 @@
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response, NextFunction, Router } from 'express';
 import { MoviesError } from '../utils/error';
 
-export const errorMiddleware = (err: Error, req: Request, res: Response, next: NextFunction) => {
-
+export const errorHandler = (err: Error, req: Request, res: Response, next: NextFunction) => {
     console.error('Error:', err);
 
     if (err instanceof MoviesError) {
-        res.status(500).send(`Error fetching movies ${err.message}`);
+        res.status(500).send(`Error fetching movies: ${err.message}`);
     } else {
         res.status(500).send('Internal Server Error');
     }

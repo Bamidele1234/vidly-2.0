@@ -19,6 +19,8 @@ export const validateGenre = (req: Request, res: Response, next: NextFunction) =
 
     if (result.error) {
         sendValidationErrors(res, result);
+
+        return;
     }
     
     next();
@@ -34,6 +36,8 @@ const validate = (req: Request, res: Response, next: NextFunction, usebody: bool
 
     if(validationResult.error){
         sendValidationErrors(res, validationResult);
+
+        return;
     }
     
     const schema = Joi.object({
@@ -51,6 +55,8 @@ const validate = (req: Request, res: Response, next: NextFunction, usebody: bool
 
     if (result.error) {
         sendValidationErrors(res, result);
+
+        return;
     } 
 
     next();

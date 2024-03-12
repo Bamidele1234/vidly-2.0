@@ -1,9 +1,11 @@
 import express from 'express';
-import genreRoute from './src/routes/genreRoutes';
-import 'express-async-errors'; 
+import "express-async-errors"; 
+import winston from 'winston';
 
+
+import genreRoute from './src/routes/genreRoutes';
 import { openDbConnection, closeDbConnection } from './src/utils/db';
-import { errorMiddleware } from './src/middleware/errorHandler';
+import { errorHandler } from './src/middleware/errorHandler';
 
 const app = express();
 const port = 5000;
@@ -12,7 +14,7 @@ app.use(express.json());
 
 app.use('/api/genres', genreRoute);
 
-app.use(errorMiddleware);
+app.use(errorHandler);
 
 // Open the database connection before starting the server
 (async () => {

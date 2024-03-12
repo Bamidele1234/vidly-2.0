@@ -1,6 +1,7 @@
 import { movieResponse } from '../models/movieResponse';
 import GenreModel, { Movie } from '../models/genre';
 import { MoviesError } from '../utils/error';
+import { NextFunction } from 'express';
 
 
 export const getMoviesFromGenre = async (genre: string): Promise<Movie[] | null> => {
@@ -68,7 +69,7 @@ export const deleteGenre = async (genreKey: string) :  Promise<movieResponse> =>
     }
 }
 
-export const addNewGenre = async (genreKey: string, movies: Movie[]) : Promise<movieResponse> => {
+export const addNewGenre = async (genreKey: string, movies: Movie[]) : Promise<movieResponse | void> => {
     try {
         const genres = await getAllGenres();
         
@@ -96,9 +97,7 @@ export const addNewGenre = async (genreKey: string, movies: Movie[]) : Promise<m
             };
         }
     } catch (error) {
-        console.error('Error adding movies by genre:', error);
-
-        throw new MoviesError('Error adding movies by genre: '); 
+        throw new MoviesError('error occurred while adding genre'); 
     }
 }
 
