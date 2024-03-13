@@ -32,7 +32,7 @@ router.get(`/:genre`, validateGenre, async (req: Request, res: Response) => {
 });
 
 
-router.post(`/add`, validateNewGenre, async (req: Request, res : Response) => {
+router.post(`/add`, async (req: Request, res : Response) => {
     const genreKey = req.body.genre?.toLocaleLowerCase();
 
     const movies = req.body.movies as Movie[];

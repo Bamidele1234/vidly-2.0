@@ -1,7 +1,6 @@
 import { movieResponse } from '../models/movieResponse';
 import GenreModel, { Movie } from '../models/genre';
 import { MoviesError } from '../utils/error';
-import { NextFunction } from 'express';
 
 
 export const getMoviesFromGenre = async (genre: string): Promise<Movie[] | null> => {

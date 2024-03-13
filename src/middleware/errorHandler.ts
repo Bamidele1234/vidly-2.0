@@ -1,19 +1,19 @@
-import { Request, Response, NextFunction, Router } from 'express';
-import { MoviesError } from '../utils/error';
+import { Request, Response, NextFunction } from 'express';
+import { DatabaseError, MoviesError } from '../utils/error';
+import logger from '../utils/logger';
 
 export const errorHandler = (err: Error, req: Request, res: Response, next: NextFunction) => {
-    console.error('Error:', err);
 
+    let statusCode = 500;
+    let errorMessage = 'Internal Server Error';
+    
     if (err instanceof MoviesError) {
-        res.status(500).send(`Error fetching movies: ${err.message}`);
-    } else {
-        res.status(500).send('Internal Server Error');
+        errorMessage = `Error fetching movies: ${err.message}`;
+    } else if (err instanceof DatabaseError) {
+        errorMessage = `Error with database: ${err.message}`;
     }
-}
 
+    logger.error(errorMessage);
 
-// export const errorHandler = (handler: (req: Request, res: Response, next: NextFunction) => Promise<void>) => {
-//     return function(req: Request, res: Response, next: NextFunction) {
-//         handler(req, res, next).catch(next);
-//     };
-// }
+    res.status(statusCode).json({ error: errorMessage });
+};
