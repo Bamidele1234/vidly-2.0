@@ -1,9 +1,8 @@
 // seedData.ts
 
-import mongoose from 'mongoose';
-import GenreModel, { Movie } from './src/models/genre'; // Adjust the import path based on your project structure
+import { Movie } from './src/models/genre'; // Adjust the import path based on your project structure
 
-const movieData: Record<string, Movie[]> = {
+const seedData: Record<string, Movie[]> = {
     action: [
         { name: 'Die Hard', year: 1988 },
         { name: 'Mad Max: Fury Road', year: 2015 },
@@ -46,30 +45,34 @@ const movieData: Record<string, Movie[]> = {
     ],
 }
 
-async function seedDatabase() {
-    try {
-        // Connect to MongoDB
-        await mongoose.connect('mongodb://localhost:27017/vidly_version2');
+// async function seedDatabase() {
+//     try {
+//         // Connect to MongoDB
+//         await mongoose.connect(CONNECTION_URI);
     
-        console.log('Connected to MongoDB');
+//         console.log('Connected to MongoDB');
     
-        // Clear existing data
-        await GenreModel.deleteMany({});
+//         // Clear existing data
+//         await GenreModel.deleteMany({});
     
-        // Insert new data
-        for (const genreName of Object.keys(movieData)) {
-            const movies = movieData[genreName];
-            await GenreModel.create({ genre: genreName, movies });
-        }
+//         // Insert new data
+//         for (const genreName of Object.keys(seedData)) {
+//             const movies = seedData[genreName];
+//             await GenreModel.create({ genre: genreName, movies });
+//         }
     
-        console.log('Data seeded successfully');
-    } catch (error) {
-        console.error('Error seeding database:', error);
-    } finally {
-        // Disconnect from MongoDB
-        await mongoose.disconnect();
-        console.log('Disconnected from MongoDB');
-    }
-}
+//         console.log('Data seeded successfully');
+//     } catch (error) {
+//         console.error('Error seeding database:', error);
+//     } finally {
+//         // Disconnect from MongoDB
+//         await mongoose.disconnect();
+//         console.log('Disconnected from MongoDB');
+//     }
+// }
 
-seedDatabase();
+//seedDatabase();
+
+
+
+export { seedData };

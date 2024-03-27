@@ -1,12 +1,12 @@
 import mongoose from 'mongoose';
-import { CONNECTION_URL } from './config';
+import { CONNECTION_URI } from './config';
 import logger from './logger';
 import { DatabaseError } from './error';
 
 const openDbConnection = async () => {
     try {
-        await mongoose.connect(CONNECTION_URL);
-        logger.info('Connected to Mongo DB');
+        await mongoose.connect(CONNECTION_URI);
+        logger.info(`Connected to ${CONNECTION_URI}`);
     } catch (error) {
         throw new DatabaseError('Error connecting to MongoDB');
     }
@@ -32,4 +32,4 @@ process.on('SIGINT', async () => {
     }
 });
 
-export { openDbConnection };
+export { openDbConnection, closeDbConnection };

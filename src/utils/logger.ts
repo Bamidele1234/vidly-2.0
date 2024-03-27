@@ -1,6 +1,6 @@
 import winston from 'winston';
 import 'winston-mongodb';
-import { CONNECTION_URL } from './config';
+import { CONNECTION_URI } from './config';
 
 const logger = winston.createLogger({
     transports: [
@@ -15,7 +15,7 @@ const logger = winston.createLogger({
         }),
         new winston.transports.File({ filename: 'combined.log' , level: "error" }),
         new winston.transports.MongoDB({
-            db: CONNECTION_URL,
+            db: CONNECTION_URI,
             options: { useUnifiedTopology: true },
             level: "info",
             collection: "Console Logs"
@@ -23,7 +23,7 @@ const logger = winston.createLogger({
     ]
 });
 
-process.on('unhandledRejection', (reason, promise) => {
+process.on('unhandledRejection', (reason) => {
     logger.error('Unhandled Promise Rejection:', reason);
 });
 
