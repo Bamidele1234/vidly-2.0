@@ -23,6 +23,23 @@ export const getMoviesFromGenre = async (genre: string): Promise<Movie[] | null>
     }
 };
 
+export const getDataById = async (id : string) => {
+    try {
+        const genre = await GenreModel.findById(id);
+
+        if (!genre) {
+            return null;
+        }
+
+        return genre;
+
+    } catch(err) { 
+        console.error('Error fetching movies by ID:', err);
+
+        throw new MoviesError('Error fetching movies by ID');
+    }
+}
+
 export const getAllGenres = async (): Promise<string[] | null> => {
     try {
         
@@ -95,8 +112,8 @@ export const addNewGenre = async (genreKey: string, movies: Movie[]) : Promise<m
                 message: 'Genre already exists',
             };
         }
-    } catch (error) {
-        throw new MoviesError('error occurred while adding genre'); 
+    } catch (error : any ) {
+        throw new MoviesError(error); 
     }
 }
 

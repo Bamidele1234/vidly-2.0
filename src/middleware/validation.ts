@@ -41,6 +41,7 @@ const validate = (req: Request, res: Response, next: NextFunction, usebody: bool
     }
     
     const schema = Joi.object({
+        genre : Joi.string().min(5).max(50).required(),
         movies: Joi.array()
             .min(1)
             .items(
@@ -51,7 +52,7 @@ const validate = (req: Request, res: Response, next: NextFunction, usebody: bool
             ).required(),
     });
 
-    const result = usebody ? schema.validate({ movies: req.body.movies }) : schema.validate(req.body);
+    const result = schema.validate(req.body);
 
     if (result.error) {
         sendValidationErrors(res, result);

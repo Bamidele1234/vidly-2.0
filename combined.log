@@ -1,0 +1,42 @@
+{"level":"error","message":"Error fetching movies: Error fetching movies by ID"}
+{"level":"error","message":"Error fetching movies: Error fetching movies by ID"}
+{"level":"error","message":"Error fetching movies: Error fetching movies by ID"}
+{"level":"error","message":"Error fetching movies: Error fetching movies by ID"}
+{"level":"error","message":"Error fetching movies: Error fetching movies by ID"}
+{"level":"error","message":"Error fetching movies: Error fetching movies by ID"}
+{"level":"error","message":"Error fetching movies: Error fetching movies by ID"}
+{"level":"error","message":"Error fetching movies: Error fetching movies by ID"}
+{"level":"error","message":"Error fetching movies: Error fetching movies by ID"}
+{"level":"error","message":"Error fetching movies: Error fetching movies by ID"}
+{"level":"error","message":"Error fetching movies: Error fetching movies by ID"}
+{"level":"error","message":"Internal Server Error"}
+{"level":"error","message":"Error fetching movies: Error fetching movies by ID"}
+{"level":"error","message":"Error fetching movies: Error fetching movies by ID"}
+{"level":"error","message":"Error fetching movies: Error fetching movies by ID"}
+{"level":"error","message":"Error fetching movies: Error fetching movies by ID"}
+{"level":"error","message":"Error fetching movies: Error fetching movies by ID"}
+{"level":"error","message":"Error fetching movies: Error fetching movies by ID"}
+{"level":"error","message":"Error fetching movies: Error fetching movies by ID"}
+{"level":"error","message":"Error fetching movies: Error fetching movies by ID"}
+{"level":"error","message":"Error fetching movies: Error fetching movies by ID"}
+{"level":"error","message":"Error fetching movies: Error fetching movies by ID"}
+{"level":"error","message":"Internal Server Error"}
+{"level":"error","message":"Internal Server Error"}
+{"level":"error","message":"Error fetching movies: error occurred while adding genre"}
+{"level":"error","message":"Error fetching movies: error occurred while adding genre"}
+{"level":"error","message":"Error fetching movies: error occurred while adding genre"}
+{"level":"error","message":"Error fetching movies: error occurred while adding genre"}
+{"level":"error","message":"Error fetching movies: error occurred while adding genre"}
+{"level":"error","message":"Error fetching movies: Genre validation failed: genre: Path `genre` (`it`) is shorter than the minimum allowed length (3)."}
+{"level":"error","message":"Error fetching movies: Genre validation failed: genre: Path `genre` (`it`) is shorter than the minimum allowed length (3)."}
+{"level":"error","message":"Error fetching movies: Genre validation failed: genre: Path `genre` (`it`) is shorter than the minimum allowed length (3)."}
+{"level":"error","message":"Error fetching movies: Genre validation failed: genre: Path `genre` (`it`) is shorter than the minimum allowed length (3)."}
+{"level":"error","message":"Error fetching movies: Genre validation failed: genre: Path `genre` (`it`) is shorter than the minimum allowed length (3)."}
+{"level":"error","message":"Error fetching movies: ValidationError: genre: Path `genre` (`it`) is shorter than the minimum allowed length (3)."}
+{"level":"error","message":"Error fetching movies: ValidationError: genre: Path `genre` (`it`) is shorter than the minimum allowed length (3)."}
+{"level":"error","message":"Error fetching movies: ValidationError: genre: Path `genre` (`it`) is shorter than the minimum allowed length (3)."}
+{"level":"error","message":"Error fetching movies: ValidationError: genre: Path `genre` (`it`) is shorter than the minimum allowed length (3)."}
+{"level":"error","message":"Error fetching movies: ValidationError: genre: Path `genre` (`it`) is shorter than the minimum allowed length (3)."}
+{"level":"error","message":"Error fetching movies: ValidationError: genre: Path `genre` (`it`) is shorter than the minimum allowed length (3)."}
+{"level":"error","message":"Internal Server Error"}
+{"level":"error","message":"Internal Server Error"}
