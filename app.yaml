@@ -1,0 +1,4 @@
+runtime: nodejs18
+
+env_variables:
+          CONNECTION_URI: "mongodb+srv://bamideledavidajewole:dYCWhVevGltct3Sy@first1.ew2fwlu.mongodb.net/?retryWrites=true&w=majority&appName=First1"

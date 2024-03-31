@@ -5,8 +5,8 @@
   "main": "app.ts",
   "scripts": {
     "test": "jest --watchAll --verbose --detectOpenHandles --coverage",
-    "start": "node dist/index.js",
-    "build" : "tsc"
+    "start": "node ./dist/index.js",
+    "gcp-build": "tsc -p ."
   },  
   "author": "Bamidele Ajewole",
   "license": "ISC",
